@@ -1,16 +1,6 @@
 #include "principal.h"
 #include "ui_principal.h"
 
-#include <QImage>
-#include <QPainter>
-#include <QMouseEvent>
-#include <QPaintEvent>
-#include <QDebug>
-#include <QInputDialog>
-#include <QColorDialog>
-#include <QFileDialog>
-#include <QMessageBox>
-
 #define DEFAULT_ANCHO 3
 
 Principal::Principal(QWidget *parent)
@@ -30,6 +20,8 @@ Principal::Principal(QWidget *parent)
     mColor = Qt::black;
     mAncho = DEFAULT_ANCHO;
     mNumLineas = 0;
+    Messi="";
+
 }
 
 Principal::~Principal()
@@ -37,6 +29,33 @@ Principal::~Principal()
     delete ui;
     delete mPainter;
     delete mImagen;
+}
+
+void Principal::rectangulos()
+{
+    mPainter->drawRect(mInicial.x(),mInicial.y(),mFinal.x()-mInicial.x(),mFinal.y()-mInicial.y());
+}
+
+void Principal::circulo()
+{
+    mPainter->drawEllipse(mInicial.x(), mInicial.y(), mFinal.x()-mInicial.x(),mFinal.y()-mInicial.y());
+}
+
+void Principal::acciones()
+{
+    if(Messi=="Dios"){
+        rectangulos();
+        mNumLineas = mNumLineas+4;
+        ui->statusbar->showMessage("Número de líneas: " + QString::number(mNumLineas));
+    }
+    else if(Messi=="The Best"&&!ui->actionLibre->isChecked()){
+        mPainter->drawLine(mInicial, mFinal);
+        ui->statusbar->showMessage("Número de líneas: " + QString::number(++mNumLineas));
+    }
+    else if(Messi=="BdOro"){
+        circulo();
+        ui->statusbar->showMessage("Número de líneas: " + QString::number(++mNumLineas));
+    }
 }
 
 void Principal::paintEvent(QPaintEvent *event)
@@ -65,26 +84,31 @@ void Principal::mouseMoveEvent(QMouseEvent *event)
     }
     // Capturar el punto donde se suelta el mouse
     mFinal = event->pos();
-    // Crear un pincel y establecer atributos
-    QPen pincel;
+
     pincel.setColor(mColor);
     pincel.setWidth(mAncho);
     // Dibujar una linea
     mPainter->setPen(pincel);
-    mPainter->drawLine(mInicial, mFinal);
+    if(Messi== "The Best"&&ui->actionLibre->isChecked()){
+        mPainter->drawLine(mInicial, mFinal);
+        // actualizar el punto inicial
+        mInicial = mFinal;
+    }
     // Mostrar el número de líneas en la barra de estado
     ui->statusbar->showMessage("Número de líneas: " + QString::number(++mNumLineas));
     // Actualizar la interfaz
     update();
-    // actualizar el punto inicial
-    mInicial = mFinal;
+
 }
 
 void Principal::mouseReleaseEvent(QMouseEvent *event)
 {
+    acciones();
     mPuedeDibujar = false;
     // Aceptar el vento
     event->accept();
+    //Actualizar la interfaz
+    update();
 
 }
 
@@ -134,3 +158,18 @@ void Principal::on_actionGuardar_triggered()
                                  "No se pudo almacenar la imagen.");
     }
 }
+
+void Principal::on_actionLineas_triggered()
+{
+    Messi="The Best";
+}
+void Principal::on_actionRect_nculos_triggered()
+{
+    Messi="Dios";
+}
+void Principal::on_actionCircunferencias_triggered()
+{
+    Messi="BdOro";
+}
+
+

@@ -16,6 +16,10 @@
   <property name="windowTitle">
    <string>Principal</string>
   </property>
+  <property name="windowIcon">
+   <iconset resource="Resources.qrc">
+    <normaloff>:/resources/klipartz.com (3).png</normaloff>:/resources/klipartz.com (3).png</iconset>
+  </property>
   <widget class="QWidget" name="centralwidget"/>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
@@ -23,7 +27,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>22</height>
+     <height>25</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuArchivo">
@@ -81,6 +85,10 @@
    </property>
   </action>
   <action name="actionColor">
+   <property name="icon">
+    <iconset resource="Resources.qrc">
+     <normaloff>:/resources/klipartz.com (0).png</normaloff>:/resources/klipartz.com (0).png</iconset>
+   </property>
    <property name="text">
     <string>Color</string>
    </property>
@@ -89,6 +97,10 @@
    </property>
   </action>
   <action name="actionAncho">
+   <property name="icon">
+    <iconset resource="Resources.qrc">
+     <normaloff>:/resources/klipartz.com (9).png</normaloff>:/resources/klipartz.com (9).png</iconset>
+   </property>
    <property name="text">
     <string>Ancho</string>
    </property>
@@ -99,6 +111,9 @@
   <action name="actionLineas">
    <property name="text">
     <string>Lineas</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+L</string>
    </property>
   </action>
   <action name="actionLibre">
@@ -113,13 +128,29 @@
    <property name="text">
     <string>Rectánculos</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+R</string>
+   </property>
   </action>
   <action name="actionCircunferencias">
    <property name="text">
     <string>Circunferencias</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+C</string>
+   </property>
+  </action>
+  <action name="actionLimpiar">
+   <property name="text">
+    <string>Limpiar</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+B</string>
+   </property>
   </action>
  </widget>
- <resources/>
+ <resources>
+  <include location="Resources.qrc"/>
+ </resources>
  <connections/>
 </ui>

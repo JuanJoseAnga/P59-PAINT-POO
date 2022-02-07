@@ -29,3 +29,10 @@ FORMS += \
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+RESOURCES += \
+    Resources.qrc
+
+DISTFILES += \
+    resources/klipartz.com (3).png \
+    resources/klipartz.com (9).png
