@@ -25,6 +25,10 @@ HEADERS += \
 FORMS += \
     principal.ui
 
+TRANSLATIONS += \
+    principal_ca.ts \
+    principal_nl.ts \
+
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin

@@ -54,7 +54,6 @@ private slots:
 
     void on_actionLineas_triggered();
 
-    void on_actionLimpiar_triggered();
 
 private:
     Ui::Principal *ui;

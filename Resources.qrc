@@ -3,5 +3,7 @@
         <file>resources/klipartz.com (3).png</file>
         <file>resources/klipartz.com (0).png</file>
         <file>resources/klipartz.com (9).png</file>
+        <file>principal_ca.qm</file>
+        <file>principal_nl.qm</file>
     </qresource>
 </RCC>

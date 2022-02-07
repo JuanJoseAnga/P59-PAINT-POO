@@ -21,7 +21,6 @@ Principal::Principal(QWidget *parent)
     mAncho = DEFAULT_ANCHO;
     mNumLineas = 0;
     Messi="";
-
 }
 
 Principal::~Principal()
@@ -46,15 +45,15 @@ void Principal::acciones()
     if(Messi=="Dios"){
         rectangulos();
         mNumLineas = mNumLineas+4;
-        ui->statusbar->showMessage("Número de líneas: " + QString::number(mNumLineas));
+        ui->statusbar->showMessage(tr("Número de líneas: ") + QString::number(mNumLineas));
     }
     else if(Messi=="The Best"&&!ui->actionLibre->isChecked()){
         mPainter->drawLine(mInicial, mFinal);
-        ui->statusbar->showMessage("Número de líneas: " + QString::number(++mNumLineas));
+        ui->statusbar->showMessage(tr("Número de líneas: ") + QString::number(++mNumLineas));
     }
     else if(Messi=="BdOro"){
         circulo();
-        ui->statusbar->showMessage("Número de líneas: " + QString::number(++mNumLineas));
+        ui->statusbar->showMessage(tr("Número de líneas: ") + QString::number(++mNumLineas));
     }
 }
 
@@ -95,7 +94,7 @@ void Principal::mouseMoveEvent(QMouseEvent *event)
         mInicial = mFinal;
     }
     // Mostrar el número de líneas en la barra de estado
-    ui->statusbar->showMessage("Número de líneas: " + QString::number(++mNumLineas));
+    ui->statusbar->showMessage(tr("Número de líneas:  ") + QString::number(++mNumLineas));
     // Actualizar la interfaz
     update();
 
@@ -116,8 +115,8 @@ void Principal::mouseReleaseEvent(QMouseEvent *event)
 void Principal::on_actionAncho_triggered()
 {
     mAncho = QInputDialog::getInt(this,
-                                  "Ancho del pincel",
-                                  "Ingrese el ancho del pincel de dibujo",
+                                  tr("Ancho del pincel"),
+                                  tr("Ingrese el ancho del pincel de dibujo"),
                                   mAncho,
                                   1, 100);
 }
@@ -131,7 +130,7 @@ void Principal::on_actionColor_triggered()
 {
     mColor = QColorDialog::getColor(mColor,
                                     this,
-                                    "Color del pincel");
+                                    tr("Color del pincel"));
 }
 
 void Principal::on_actionNuevo_triggered()
@@ -144,18 +143,18 @@ void Principal::on_actionNuevo_triggered()
 void Principal::on_actionGuardar_triggered()
 {
     QString nombreArchivo = QFileDialog::getSaveFileName(this,
-                                                         "Guardar imagen",
+                                                         tr("Guardar imagen"),
                                                          QString(),
                                                          "Imágenes (*.png)");
     if ( !nombreArchivo.isEmpty() ){
         if (mImagen->save(nombreArchivo))
             QMessageBox::information(this,
-                                     "Guardar imagen",
-                                     "Archivo almacenado en: " + nombreArchivo);
+                                     tr("Guardar imagen"),
+                                     tr("Archivo almacenado en: ") + nombreArchivo);
         else
             QMessageBox::warning(this,
-                                 "Guardar imagen",
-                                 "No se pudo almacenaar la imagen.");
+                                 tr("Guardar imagen"),
+                                 tr("No se pudo almacenaar la imagen."));
     }
 }
 
