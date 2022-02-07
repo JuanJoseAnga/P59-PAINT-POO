@@ -155,7 +155,7 @@ void Principal::on_actionGuardar_triggered()
         else
             QMessageBox::warning(this,
                                  "Guardar imagen",
-                                 "No se pudo almacenar la imagen.");
+                                 "No se pudo almacenaar la imagen.");
     }
 }
 
